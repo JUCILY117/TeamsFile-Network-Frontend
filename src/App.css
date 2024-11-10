@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out forwards;
+  }
+  
+  /* CSS animation for fade-in and slide-up */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+/* styles.css */
+.scroll-hidden::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.scroll-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+
+/* For Webkit browsers (Chrome, Safari, Edge, etc.) */
+::-webkit-scrollbar {
+  width: 10px;  /* Slim scrollbar width */
+  height: 8px; /* For horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;  /* Light gray background for the track */
+  border-radius: 10px;   /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff;  /* Pure black thumb */
+  border-radius: 10px;   /* Rounded corners for the thumb */
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transition for hover */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c7c7c7;   /* Darker gray when hovering over the thumb */
+  transform: scale(1.1);  /* Slightly enlarge the thumb on hover for interactivity */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #bdbdbd;  /* Even darker color when the thumb is active (dragging) */
+}
+
+::-webkit-scrollbar-corner {
+  background: #dcdcdc;  /* Same light gray for the corner (where vertical and horizontal scrollbars meet) */
+}
+
+/* For Firefox */
+.scrollable-container {
+  scrollbar-width: thin;  /* Use thin scrollbar */
+  scrollbar-color: #000000 #dcdcdc;  /* Black thumb and gray track for Firefox */
+}
