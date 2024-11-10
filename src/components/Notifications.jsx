@@ -112,11 +112,11 @@ const Notifications = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center animate-fade-in">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-[600px]">
+      <div className="bg-black border border-[#2c2c2c] p-8 rounded-lg  w-[600px]">
         <h2 className="text-2xl font-bold mb-6 text-gray-200 flex items-center justify-between">
           <span>Notifications</span>
           <div className="relative cursor-pointer">
-            <FaBell size={30} className={`text-gray-400 ${unreadCount > 0 ? "text-red-500" : ""}`} />
+            <FaBell size={30} className={`text-white ${unreadCount > 0 ? "text-red-500" : ""}`} />
             {unreadCount > 0 && (
               <span
                 className="absolute text-sm text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center"
@@ -136,7 +136,7 @@ const Notifications = ({ onClose }) => {
               <li
                 key={notif._id}
                 className={`flex justify-between items-center ${
-                  notif.read ? "bg-gray-700" : "bg-gray-600"
+                  notif.read ? "bg-black border border-[#2c2c2c]" : "bg-black border border-[#2c2c2c]"
                 } p-4 rounded-lg transition-transform transform hover:scale-105`}
               >
                 <span className="text-gray-300 text-lg">{notif.message}</span>
@@ -146,13 +146,13 @@ const Notifications = ({ onClose }) => {
                     <div className="flex space-x-3">
                       <button
                         onClick={() => handleAcceptInvite(notif._id, notif.teamId)}
-                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-150"
+                        className="bg-white text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-200 transition duration-150"
                       >
                         Accept
                       </button>
                       <button
                         onClick={() => handleRejectInvite(notif._id)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-150"
+                        className="bg-none text-white px-4 py-2 rounded-lg hover:bg-[#27272A] transition duration-150"
                       >
                         Reject
                       </button>
@@ -163,7 +163,7 @@ const Notifications = ({ onClose }) => {
                   {!notif.read && (
                     <button
                       onClick={() => handleMarkAsRead(notif._id)}
-                      className="text-blue-200 hover:text-green-400 transition duration-150"
+                      className="text-white hover:text-green-400 transition duration-150"
                       title="Mark as read"
                     >
                       <MdOutlineDone size={25} />
@@ -185,7 +185,7 @@ const Notifications = ({ onClose }) => {
         </ul>
 
         <button
-          className="mt-6 bg-gray-700 px-5 py-3 rounded-lg text-white hover:bg-gray-600 w-full font-semibold text-lg transition duration-150"
+          className="mt-6 bg-white px-5 py-3 rounded-lg text-black hover:bg-gray-200 w-full font-semibold text-lg transition duration-150"
           onClick={onClose} // Close the modal when clicked
         >
           Close
