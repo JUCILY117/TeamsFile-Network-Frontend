@@ -2,4 +2,9 @@
   from = "/*"
   to = "/anmol.html"
   status = 503
-  force = true
+  force=true
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"
