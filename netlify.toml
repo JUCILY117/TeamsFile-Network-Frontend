@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "/anmol.html"
+  status = 503
+  force = true
