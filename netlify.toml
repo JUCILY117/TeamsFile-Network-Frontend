@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/*"
-  to = "/anmol.html"
+  to = "/maintenance.html"
   status = 302
 
 [[headers]]
