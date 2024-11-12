@@ -23,8 +23,8 @@ const MaintenancePage = () => {
       <div className="text-5xl font-bold text-white text-center w-[70%] mx-auto">
         Hey <span className="text-red-600">Shawty</span>, you lost? Don't worry,
         you can come with me. I'm sure you can't go back after I{' '}
-        <span className="text-blue-500">rizzed</span> you{' '}
-        <u className="underline">level 10</u>{' '}
+        <span className="text-blue-500">rizzed</span> your{' '}
+        <u className="underline"><a href='https://www.instagram.com/_anmolpandhi_/'>level 10</a></u>{' '}
         <strong className="text-[#dd8030]">Gyaatt🍑</strong>!
       </div>
     </div>
