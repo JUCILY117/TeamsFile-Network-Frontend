@@ -4,26 +4,46 @@ import { getRandomImage } from '../utils/RandomImage';
 const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
-  const [profileImage, setProfileImage] = useState(() => {
-    return localStorage.getItem('profileImage') || getRandomImage();
-  });
+  const [profileImage, setProfileImage] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('profileImage', profileImage);
+    const storedImage = localStorage.getItem('profileImage');
+    
+    if (storedImage) {
+      setProfileImage(storedImage);
+    } else {
+      const randomImage = getRandomImage();
+      setProfileImage(randomImage);
+    }
+    
+    setIsReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (profileImage) {
+      localStorage.setItem('profileImage', profileImage);
+    }
   }, [profileImage]);
 
   const handleLogin = (userProfileImage) => {
-    setProfileImage(userProfileImage || profileImage);
+    if (userProfileImage) {
+      setProfileImage(userProfileImage);
+    }
   };
 
   const handleLogout = () => {
-    setProfileImage(getRandomImage());
+    const randomImage = getRandomImage();
+    setProfileImage(randomImage);
   };
 
   const updateProfileImage = (newImageUrl) => {
     setProfileImage(newImageUrl);
-    localStorage.setItem('profileImage', newImageUrl);
   };
+
+  if (!isReady) {
+    return null;
+  }
 
   return (
     <ProfileContext.Provider value={{ profileImage, handleLogin, handleLogout, updateProfileImage }}>
