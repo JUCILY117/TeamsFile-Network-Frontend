@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const RecentContent = () => {
-  const [filter, setFilter] = useState('all'); // State to manage selected filter
+  const [filter, setFilter] = useState('all');
   const recentActivities = [
     {
       id: 1,
@@ -35,7 +35,6 @@ const RecentContent = () => {
     },
   ];
 
-  // Function to filter activities based on selected filter
   const filterActivities = () => {
     switch (filter) {
       case '24h':
@@ -43,9 +42,9 @@ const RecentContent = () => {
       case 'week':
         return recentActivities.filter(activity => activity.timestamp.includes('day'));
       case 'month':
-        return recentActivities; // For now, we return all
+        return recentActivities;
       default:
-        return recentActivities; // Show all by default
+        return recentActivities;
     }
   };
 
@@ -54,7 +53,6 @@ const RecentContent = () => {
       <h1 className="text-4xl font-bold mb-6">Recent Activity</h1>
       <p className="mb-4">Check out the recent activities from your team members.</p>
 
-      {/* Filter Options */}
       <div className="flex space-x-4 mb-6">
         {['all', '24h', 'week', 'month'].map((option) => (
           <button
@@ -69,7 +67,6 @@ const RecentContent = () => {
         ))}
       </div>
 
-      {/* Activity Overview Section */}
       <div className="bg-gray-800 rounded-md p-4 mb-6">
         <h2 className="text-2xl font-semibold mb-3">Overview</h2>
         <div className="grid grid-cols-2 gap-4">
@@ -83,8 +80,6 @@ const RecentContent = () => {
           </div>
         </div>
       </div>
-
-      {/* Activity List Section */}
       <div className="bg-gray-800 rounded-md p-4">
         <h2 className="text-xl font-semibold mb-3">Recent Activities</h2>
         <ul className="list-disc pl-5">
@@ -101,8 +96,6 @@ const RecentContent = () => {
           ))}
         </ul>
       </div>
-
-      {/* Notify of New Activity */}
       <div className="mt-6 bg-blue-800 p-4 rounded-md">
         <h2 className="text-lg font-semibold mb-2">New Activity!</h2>
         <p>Don't forget to check out the latest updates from your teammates!</p>

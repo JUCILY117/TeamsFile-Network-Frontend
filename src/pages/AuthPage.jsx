@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import SignupForm from "./SignupPage"; // Signup component you have
-import LoginForm from "./LoginPage";   // Login component you have
+import SignupForm from "./SignupPage";
+import LoginForm from "./LoginPage";
+import { toast, ToastContainer } from "react-toastify";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Auth = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Dynamically inject CSS for sliding transitions
     const styleElement = document.createElement("style");
     styleElement.innerHTML = `
       .slide-enter {
@@ -38,7 +38,7 @@ const Auth = () => {
   }, []);
 
   return (
-    <div className="bg-black">
+    <div className="bg-black select-none">
         <TransitionGroup>
           <CSSTransition key={location.pathname} classNames="slide" timeout={500}>
             <div>
@@ -52,6 +52,19 @@ const Auth = () => {
             </div>
           </CSSTransition>
         </TransitionGroup>
+        <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        style={{ zIndex: 9999 }}
+      />
     </div>
   );
 };

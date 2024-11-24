@@ -3,19 +3,19 @@ import { StickyScroll } from "./ui/sticky-scroll-reveal";
 
 const content = [
   {
-    title: "Collaborative Editing",
+    title: "Seamless Team Collaboration",
     description:
-      "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+      "Effortlessly Manage and Share Resources Create teams, organize resources, and store important documents all in one place. TeamShareNetwork makes collaboration easy with intuitive file management tools and secure sharing features, empowering teams to work more efficiently and stay organized.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Collaborative Editing
+        Seamless Team Collaboration
       </div>
     ),
   },
   {
-    title: "Real time changes",
+    title: "Real-Time Communication",
     description:
-      "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
+      "Chat and Video Calls Made Easy Stay connected with your team through integrated chat and video call features. Whether you're discussing a project or brainstorming ideas, TeamShareNetwork ensures real-time communication with high-quality video and instant messaging.",
     content: (
       <div className="h-full w-full flex items-center justify-center text-white">
         <img
@@ -29,9 +29,9 @@ const content = [
     ),
   },
   {
-    title: "Version control",
+    title: "Secure File Sharing & Storage",
     description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      "Keep Your Data Safe and Accessible Upload, store, and share documents with confidence. With TeamShareNetwork, your files are encrypted, and access permissions are fully customizable, ensuring secure sharing and management of sensitive team resources.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
         Version control
@@ -39,9 +39,9 @@ const content = [
     ),
   },
   {
-    title: "Running out of content",
+    title: "Customizable Team Management",
     description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      "Tailored to Your Team's Needs Whether you're working on a college project or a professional task, TeamShareNetwork lets you customize your team structure, roles, and permissions. Efficiently manage access to resources and ensure that everyone is on the same page with organized workflows.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
         Running out of content

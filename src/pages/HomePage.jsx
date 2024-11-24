@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import Navbar from '../components/Navbar';
 import HomeContent from '../components/HomeContent';
 import TeamsContent from '../components/TeamsContent';
 import RecentContent from '../components/RecentContent';
@@ -27,12 +26,8 @@ function HomePage() {
 
   return (
     <>
-      <Navbar />
-      <div className="flex">
-        {/* Sidebar */}
+      <div className="flex select-none">
         <Sidebar selected={selected} setSelected={setSelected} />
-
-        {/* Main Content */}
         <div className="flex-1 bg-gray-100 h-auto min-h-screen">
           {selected === 'home' && <HomeContent />}
           {selected === 'teams' && <TeamsContent />}

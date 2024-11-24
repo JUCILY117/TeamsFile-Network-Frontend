@@ -4,7 +4,7 @@ import { FaArrowLeft, FaBell } from "react-icons/fa";
 import axios from "axios";
 import TeamDetails from "./TeamDetails";
 import { useNavigate } from "react-router-dom";
-import Notifications from "./Notifications"; // Import the Notifications component
+import Notifications from "./Notifications";
 
 const apiBaseUrl = import.meta.env.VITE_BASE_API;
 
@@ -15,11 +15,10 @@ const HomeContent = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false); // Track if there are unread notifications
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch teams, user data, and notifications
     const fetchTeams = async () => {
       try {
         const response = await axios.get(`${apiBaseUrl}/api/teams`, {
@@ -62,10 +61,9 @@ const HomeContent = () => {
 
     fetchTeams();
     fetchCurrentUser();
-    fetchNotifications(); // Fetch notifications when component mounts
-  }, []); // No need for socket now
+    fetchNotifications();
+  }, []);
 
-  // This function updates the unread notification state after closing the notifications modal
   const updateUnreadNotificationsStatus = async () => {
     try {
       const response = await axios.get(`${apiBaseUrl}/api/notifications`, {
@@ -113,12 +111,11 @@ const HomeContent = () => {
 
   const handleNotificationClick = () => {
     setIsNotificationsOpen(!isNotificationsOpen);
-    setHasUnreadNotifications(false); // Mark as read when the user views notifications
+    setHasUnreadNotifications(false);
   };
 
   const handleMarkNotificationAsRead = (id) => {
-    // Optionally update the backend when marking a notification as read
-    // For now, we just set the read flag in the local state
+    //for later
   };
 
   return (
@@ -127,25 +124,22 @@ const HomeContent = () => {
         <TeamDetails team={selectedTeam} onBackClick={handleBackClick} />
       ) : (
         <>
-          <div className="flex items-center justify-between w-full mt-4 mb-10">
+          <div className="flex items-center justify-between w-full mt-10 mb-10">
             <div className="text-6xl font-bold text-center flex-1">
               {currentUser
                 ? `Welcome back, ${currentUser.firstName} ${currentUser.lastName}!`
                 : "Welcome, User!"}
             </div>
             <div className="flex items-center">
-              {/* Notification Button */}
               <div
                 className={`p-2 rounded-full cursor-pointer flex items-center justify-center mr-4 ${
-    hasUnreadNotifications ? "bg-red-600" : "bg-white"
-  } hover:bg-gray-200`} // Bell icon background color changes to red if unread notifications
+                  hasUnreadNotifications ? "bg-red-600" : "bg-white"
+                } hover:bg-gray-200`}
                 onClick={handleNotificationClick}
                 style={{ width: "40px", height: "40px" }}
               >
                 <FaBell className="text-black text-2xl" />
               </div>
-
-              {/* Create Team Button */}
               <div
                 className="bg-white hover:bg-gray-200 p-2 rounded-full cursor-pointer flex items-center justify-center"
                 style={{ width: "40px", height: "40px" }}
@@ -167,7 +161,7 @@ const HomeContent = () => {
               }
             }}
           >
-            {teams.length === 0 ? (
+           {teams.length === 0 ? (
               <p className="text-gray-200 text-3xl text-center w-full">
                 Click here to create your first team!
               </p>
@@ -176,30 +170,56 @@ const HomeContent = () => {
                 {teams.map((team) => (
                   <div
                     key={team._id}
-                    className="bg-black border border-[#2c2c2c]  p-4 rounded-lg shadow-md text-center flex flex-col items-center justify-center transition duration-300 transform hover:scale-105 hover:bg-white hover:text-black cursor-pointer"
-                    style={{ minWidth: "150px", maxWidth: "200px", minHeight: "150px", maxHeight: "200px" }}
+                    className="bg-black border border-[#2c2c2c] p-4 rounded-lg shadow-md text-center flex flex-col items-center justify-center transition duration-300 transform hover:scale-105 hover:bg-white hover:text-black cursor-pointer group"
+                    style={{ minWidth: "350px", maxWidth: "200px", minHeight: "250px", maxHeight: "200px" }}
                     onClick={(e) => handleTeamClick(team, e)}
                   >
-                    <h3 className="text-lg font-semibold">{team.name}</h3>
-                    <p className="text-sm mt-2">{team.members?.length || 0} members</p>
+                    <div
+                      className="w-24 h-24 rounded-full mb-4 overflow-hidden border-2 border-[#2c2c2c] flex items-center justify-center bg-[#242424] group-hover:border-2 group-hover:border-black transition-all duration-300"
+                      style={{
+                        backgroundImage: team.teamImage
+                          ? `url(${team.teamImage})`
+                          : 'none',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}
+                    >
+                      {!team.teamImage && (
+                        <span className="text-4xl font-bold text-white">
+                          {team.name
+                            .split(' ')
+                            .map((word, index) => word[0].toUpperCase())
+                            .join('')
+                            .split('')
+                            .map((letter, index) => (
+                              <span
+                                key={index}
+                                className={index === 0 ? 'text-red-500' : index === 1 ? 'text-blue-500' : 'text-white'}
+                              >
+                                {letter}
+                              </span>
+                            ))}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-4xl font-semibold">{team.name}</h3>
+                    <p className="text-lg mt-2 text-gray-300 group-hover:text-black">{team.members?.length || 0} members</p>
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Notifications Modal */}
           {isNotificationsOpen && (
             <Notifications
               onClose={() => {
                 setIsNotificationsOpen(false);
-                updateUnreadNotificationsStatus(); // Update the unread notification status when modal is closed
+                updateUnreadNotificationsStatus();
               }}
               onRead={handleMarkNotificationAsRead}
             />
           )}
 
-          {/* Modal for Creating a New Team */}
           {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center animate-fade-in">
               <div className="bg-black border border-[#2c2c2c]  p-6 rounded-lg shadow-lg w-96">

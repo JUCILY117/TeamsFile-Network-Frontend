@@ -9,7 +9,6 @@ const Notifications = ({ onClose }) => {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
 
-  // Fetch notifications
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
@@ -19,8 +18,6 @@ const Notifications = ({ onClose }) => {
           },
         });
         setNotifications(response.data);
-
-        // Count unread notifications
         const unread = response.data.filter((notif) => !notif.read).length;
         setUnreadCount(unread);
       } catch (error) {
@@ -31,7 +28,6 @@ const Notifications = ({ onClose }) => {
     fetchNotifications();
   }, []);
 
-  // Handle deleting a notification
   const handleDeleteNotification = async (id) => {
     try {
       await axios.delete(`${apiBaseUrl}/api/notifications/${id}`, {
@@ -45,7 +41,6 @@ const Notifications = ({ onClose }) => {
     }
   };
 
-  // Handle marking notification as read
   const handleMarkAsRead = async (id) => {
     try {
       await axios.patch(
@@ -57,22 +52,18 @@ const Notifications = ({ onClose }) => {
           },
         }
       );
-
-      // Update the local state to reflect the "read" status
       setNotifications((prevNotifications) =>
         prevNotifications.map((notif) =>
           notif._id === id ? { ...notif, read: true } : notif
         )
       );
 
-      // Decrease unread count
       setUnreadCount((prevCount) => prevCount - 1);
     } catch (error) {
       console.error("Error marking notification as read:", error);
     }
   };
 
-  // Handle accepting a team invite
   const handleAcceptInvite = async (id, teamId) => {
     try {
       await axios.post(
@@ -84,14 +75,12 @@ const Notifications = ({ onClose }) => {
           },
         }
       );
-      // Remove the notification after accepting
       setNotifications(notifications.filter((notif) => notif._id !== id));
     } catch (error) {
       console.error("Error accepting invite:", error);
     }
   };
 
-  // Handle rejecting a team invite
   const handleRejectInvite = async (id) => {
     try {
       await axios.post(
@@ -103,7 +92,6 @@ const Notifications = ({ onClose }) => {
           },
         }
       );
-      // Remove the notification after rejecting
       setNotifications(notifications.filter((notif) => notif._id !== id));
     } catch (error) {
       console.error("Error rejecting invite:", error);
@@ -120,7 +108,7 @@ const Notifications = ({ onClose }) => {
             {unreadCount > 0 && (
               <span
                 className="absolute text-sm text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center"
-                style={{ top: '-8px', right: '-10px' }} // Adjust these values as needed
+                style={{ top: '-8px', right: '-10px' }}
               >
                 {unreadCount}
               </span>
@@ -141,7 +129,6 @@ const Notifications = ({ onClose }) => {
               >
                 <span className="text-gray-300 text-lg">{notif.message}</span>
                 <div className="flex items-center space-x-3">
-                  {/* Only show accept/reject buttons for invite notifications */}
                   {notif.type === 'team_invite' && (
                     <div className="flex space-x-3">
                       <button
@@ -159,7 +146,6 @@ const Notifications = ({ onClose }) => {
                     </div>
                   )}
 
-                  {/* Mark as read button */}
                   {!notif.read && (
                     <button
                       onClick={() => handleMarkAsRead(notif._id)}
@@ -170,7 +156,6 @@ const Notifications = ({ onClose }) => {
                     </button>
                   )}
 
-                  {/* Delete button */}
                   <button
                     onClick={() => handleDeleteNotification(notif._id)}
                     className="text-red-500 hover:text-red-700 transition duration-150"
@@ -186,7 +171,7 @@ const Notifications = ({ onClose }) => {
 
         <button
           className="mt-6 bg-white px-5 py-3 rounded-lg text-black hover:bg-gray-200 w-full font-semibold text-lg transition duration-150"
-          onClick={onClose} // Close the modal when clicked
+          onClick={onClose}
         >
           Close
         </button>

@@ -5,9 +5,12 @@ import { Label } from "../components/ui/label";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FcGoogle } from "react-icons/fc";
+import { FaXTwitter, FaXbox } from "react-icons/fa6";
+import { FaGithub, FaFacebook } from "react-icons/fa";
 import placeholderImage from "../assets/giorno.jpg";
-import { toast, ToastContainer } from "react-toastify"; // Import Toast components
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const apiBaseUrl = import.meta.env.VITE_BASE_API;
 
@@ -20,6 +23,7 @@ export default function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -28,6 +32,8 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+  
     try {
       const response = await fetch(`${apiBaseUrl}/api/auth/register`, {
         method: "POST",
@@ -36,32 +42,39 @@ export default function Signup() {
         },
         body: JSON.stringify({ firstName, lastName, email, password }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
-        const errorMessage = (errorData.errors && errorData.errors.length > 0)
+        const errorMessage = errorData.errors && errorData.errors.length > 0
           ? errorData.errors[0].msg
           : "Signup failed!";
         throw new Error(errorMessage);
       }
-
-      toast.success("Signup successful! Please check your email to verify your account.", {
-        position: "top-right",
-        autoClose: 3000,
-        theme: "dark",
-      });
-      navigate("/login");
+  
+      toast.success(
+        "Signup successful! Please check your email to verify your account.",
+        {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "dark",
+        }
+      );
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     } catch (error) {
       toast.error(error.message, {
         position: "top-right",
         autoClose: 3000,
         theme: "dark",
       });
+    } finally {
+      setLoading(false);
     }
   };
-
+  
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] text-white bg-black lg:grid-cols-2 xl:min-h-[800px] overflow-hidden">
+    <div className="w-full h-screen lg:grid text-white bg-black lg:grid-cols-2 overflow-hidden">
       <div className="hidden bg-muted lg:block">
         <img
           src={placeholderImage}
@@ -79,30 +92,33 @@ export default function Signup() {
           </div>
 
           <form onSubmit={handleSubmit} className="grid gap-8">
-            <div className="grid gap-2">
-              <Label htmlFor="first-name">First Name</Label>
-              <Input
-                id="first-name"
-                type="text"
-                placeholder="First Name"
-                required
-                className="bg-black border border-neutral-800"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <Label htmlFor="first-name">First Name</Label>
+                <Input
+                  id="first-name"
+                  type="text"
+                  placeholder="First Name"
+                  required
+                  className="bg-black border border-neutral-800 w-full"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
+              <div className="w-1/2">
+                <Label htmlFor="last-name">Last Name</Label>
+                <Input
+                  id="last-name"
+                  type="text"
+                  placeholder="Last Name"
+                  required
+                  className="bg-black border border-neutral-800 w-full"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="last-name">Last Name</Label>
-              <Input
-                id="last-name"
-                type="text"
-                placeholder="Last Name"
-                required
-                className="bg-black border border-neutral-800"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
+
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -115,6 +131,7 @@ export default function Signup() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+
             <div className="grid gap-2 relative">
               <Label htmlFor="password">Password</Label>
               <Input
@@ -133,32 +150,54 @@ export default function Signup() {
                 <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
               </span>
             </div>
-            <Button type="submit" className="w-full bg-white text-black text-lg font-bold">
-              Sign Up
+
+            <Button
+              type="submit"
+              className="w-full bg-white text-black text-lg font-bold hover:bg-gray-200"
+            >
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="loader"></div>
+                </div>
+              ) : (
+                "Sign Up"
+              )}
             </Button>
+
+            <div className="flex items-center">
+                <hr className="flex-grow border-t border-[#2c2c2c]" />
+                <span className="px-4 text-md text-neutral-400">or</span>
+                <hr className="flex-grow border-t border-[#2c2c2c]" />
+              </div>
+
+            <div className="flex justify-center gap-4">
+              <Button className="font-bold flex items-center justify-center">
+                <FcGoogle size={30} className="hover:scale-[1.4] transition-all duration-300"/>
+              </Button>
+              <Button className="font-bold flex items-center justify-center">
+                <FaGithub size={30} className="hover:scale-[1.4] transition-all duration-300"/>
+              </Button>
+              <Button className="font-bold flex items-center justify-center">
+                <FaXbox size={30} className=" text-green-600 hover:scale-[1.4] transition-all duration-300" />
+              </Button>
+              <Button className="font-bold flex items-center justify-center">
+                <FaXTwitter size={30} className="hover:scale-[1.4] transition-all duration-300"/>
+              </Button>
+              <Button className="font-bold flex items-center justify-center">
+                <FaFacebook size={30} className="text-[#1877F2] hover:scale-[1.4] transition-all duration-300"/>
+              </Button>
+            </div>
+
           </form>
 
           <div className="mt-6 text-center text-lg">
             Already have an account?{" "}
-            <Link to="/login" className="underline font-bold">
+            <Link to="/login" className="underline font-bold hover:text-gray-200">
               Log in
             </Link>
           </div>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        style={{ zIndex: 9999 }}
-      />
     </div>
   );
 }
