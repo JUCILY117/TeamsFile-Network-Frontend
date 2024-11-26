@@ -14,7 +14,7 @@ const InviteMember = ({ inviteEmail, setInviteEmail, inviteStatus, handleInviteU
         />
         <button
           onClick={handleInviteUser}
-          className="bg-white p-2 rounded hover:bg-gray-200 text-black"
+          className="bg-white p-2 font-bold rounded hover:bg-gray-200 text-black"
         >
           Send Invitation
         </button>

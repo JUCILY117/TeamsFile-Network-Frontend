@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { ProfileProvider } from './context/ProfileContext';
 import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
 import TeamDetails from './components/TeamDetails';
 import AuthListener from './components/AuthListener';
+import MediaOverlay from './components/MediaOverlay';
 import Navbar from './components/Navbar';
 import AuthPage from './pages/AuthPage';
 import MaintenancePage from './pages/Maintenance';
 import './App.css';
 
 function App() {
+  const { user } = useAuth();
   const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
 
   if (isMaintenanceMode) {
@@ -23,6 +25,7 @@ function App() {
       <AuthProvider>
         <ProfileProvider>
           <Navbar/>
+          {user && <MediaOverlay/>}
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<HomePage />} />

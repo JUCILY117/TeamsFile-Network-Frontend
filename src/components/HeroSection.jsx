@@ -17,12 +17,12 @@ export default function BackgroundGradientAnimationDemo() {
       >
         <motion.h1
           className="bg-clip-text py-10 text-transparent drop-shadow-2xl bg-gradient-to-b from-white/90 to-white/30"
-          initial={{ scale: 0.9 }}
+          initial={{ scale: 0.6 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <div className="flex flex-col">
-          <span className="text-6xl lg:text-9xl">Your Team, Your Rules</span>  <br/> Share and Collaborate Easily
+          <span className="text-6xl lg:text-9xl">Your Team, Your Rules</span>  <br/>Share and Collaborate Easily
           </div>
         </motion.h1>
         <TextGenerateEffect words={words} />

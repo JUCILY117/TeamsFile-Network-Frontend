@@ -1,0 +1,224 @@
+.media-overlay {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #000; /* Creamy background color */
+  color: #fff; /* Darker text for contrast */
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 320px;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid #2c2c2c;
+  user-select: none;
+}
+
+.spotify-logo {
+  width: 7rem;
+  margin: 1rem;
+}
+
+.minimized {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  /* background: none; */
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cover-image {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.controls svg {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.play-pause-button, .minimize-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.minimize-button {
+  position: absolute;
+  top: 4px; /* Adjusted to appear a bit above the bottom */
+  right: 4px;
+  border-radius: 50%;
+  padding: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.no-track-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  color: #ccc;
+  padding: 2rem;
+}
+
+
+.cover-container {
+  position: relative;
+  display: inline-block; /* or block depending on layout needs */
+}
+
+.explicit-label{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    background-color: hsla(0, 0%, 100%, .6);
+    border-radius: 2px;
+    color: #121212;
+    font-size: 9px;
+    height: 16px;
+    padding: 3px 5px;
+    text-transform: uppercase;
+}
+
+.minimized-cover-image{
+  border: 2px solid #999999;
+  width: 4rem;
+  border-radius: 1rem;
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.3rem;
+  cursor: pointer;
+  z-index: 9999;
+}
+.progress-bar-fill {
+  background: #fff;
+  height: 100%;
+  width: 0;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.progress-bar {
+  width: 14vw;
+  height: 6px;
+  background: #555;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 5px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.login-spotify {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.media-overlay .login-button {
+  background-color: #fff;
+  border-radius: 25px;
+  gap: 1rem;
+  color: #000;
+  font-size: 1.2rem;
+  border: none;
+  margin: 0.5rem;
+  width: 17rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-overlay .login-button:hover {
+  background-color: #16c754b9;
+  color: #fff;
+}
+
+/* Media queries for mobile screens */
+@media (max-width: 768px) {
+  .media-overlay {
+    width: 250px; /* Smaller width for mobile */
+    font-size: 14px; /* Adjust font size */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .minimized {
+    width: 60px; /* Smaller width for minimized state on mobile */
+    height: 60px;
+  }
+
+  .track-info {
+    flex-direction: column; /* Stack elements vertically on mobile */
+    align-items: center;
+  }
+
+  .cover-image {
+    margin-top: 1rem;
+    width: 80%; /* Reduce cover image size */
+  }
+}
+
+@media (max-width: 480px) {
+  .media-overlay {
+    width: 200px; /* Even smaller width for very small screens */
+    font-size: 12px; /* Smaller font size */
+    padding: 5px; /* Reduced padding */
+  }
+
+  .minimized {
+    width: 50px; /* Smaller width for minimized state on very small screens */
+    height: 50px;
+  }
+
+  .cover-image {
+    margin-top: 1rem;
+    width: 70%; /* Further reduce cover image size */
+  }
+}
