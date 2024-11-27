@@ -150,15 +150,43 @@ const TeamsContent = () => {
   return (
     <div className="p-6 flex space-x-6 bg-black border border-[#2c2c2c] text-white min-h-screen">
       <div className="w-1/4 bg-black border border-[#2c2c2c] p-4 rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-4">Select Team</h2>
+        <h2 className="text-2xl font-bold mb-4">Select Team</h2>
         <ul className="space-y-2">
           {teams.map((team) => (
             <li
               key={team._id}
-              className={`cursor-pointer p-3 rounded-md transition-colors duration-200 ${selectedTeam?._id === team._id ? 'bg-white text-black hover:bg-gray-200 font-bold' : 'bg-gray-700 hover:bg-blue-400 hover:text-black font-bold'}`}
+              className={`cursor-pointer p-3 flex items-center text-xl rounded-md transition-colors duration-200 ${selectedTeam?._id === team._id ? 'bg-white text-black hover:bg-gray-200 hover:cursor-default font-bold' : 'bg-none hover:bg-[#27272A] hover:text-white font-bold'}`}
               onClick={() => handleTeamSelect(team._id)}
             >
-              {team.name}
+              <div
+                      className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#2c2c2c] flex items-center justify-center bg-[#242424] group-hover:border-2 group-hover:border-black transition-all duration-300"
+                      style={{
+                        backgroundImage: team.teamImage
+                          ? `url(${team.teamImage})`
+                          : 'none',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}
+                    >
+                      {!team.teamImage && (
+                        <span className="text-2xl font-bold text-white">
+                          {team.name
+                            .split(' ')
+                            .map((word, index) => word[0].toUpperCase())
+                            .join('')
+                            .split('')
+                            .map((letter, index) => (
+                              <span
+                                key={index}
+                                className={index === 0 ? 'text-red-500' : index === 1 ? 'text-blue-500' : 'text-white'}
+                              >
+                                {letter}
+                              </span>
+                            ))}
+                        </span>
+                      )}
+                    </div>
+              <span className='ml-3 text-2xl'>{team.name}</span>
             </li>
           ))}
         </ul>

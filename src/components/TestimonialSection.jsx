@@ -18,7 +18,7 @@ export default function AnimatedTestimonialsDemo() {
     },
     {
       quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
+        "The most lore accurate Anmol description.                               *HEHE*                               *HEHE*                               *HEHE*                               *HEHE*                               *HEHE*                               *HEHE*                               *HEHE*                               *HEHE*                               *HEHE*",
       name: "Anmol Pandhi",
       designation: "The Protagonist",
       src: "https://grapeejapan.com/wp-content/uploads/47419_06.jpg",

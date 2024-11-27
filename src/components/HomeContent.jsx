@@ -175,7 +175,7 @@ const HomeContent = () => {
                     onClick={(e) => handleTeamClick(team, e)}
                   >
                     <div
-                      className="w-24 h-24 rounded-full mb-4 overflow-hidden border-2 border-[#2c2c2c] flex items-center justify-center bg-[#242424] group-hover:border-2 group-hover:border-black transition-all duration-300"
+                      className="w-48 h-48 rounded-full mb-4 overflow-hidden border-2 border-[#2c2c2c] flex items-center justify-center bg-[#242424] group-hover:border-2 group-hover:border-black transition-all duration-300"
                       style={{
                         backgroundImage: team.teamImage
                           ? `url(${team.teamImage})`
@@ -185,7 +185,7 @@ const HomeContent = () => {
                       }}
                     >
                       {!team.teamImage && (
-                        <span className="text-4xl font-bold text-white">
+                        <span className="text-8xl font-bold text-white">
                           {team.name
                             .split(' ')
                             .map((word, index) => word[0].toUpperCase())
@@ -202,7 +202,7 @@ const HomeContent = () => {
                         </span>
                       )}
                     </div>
-                    <h3 className="text-4xl font-semibold">{team.name}</h3>
+                    <h3 className="text-3xl font-semibold">{team.name}</h3>
                     <p className="text-lg mt-2 text-gray-300 group-hover:text-black">{team.members?.length || 0} members</p>
                   </div>
                 ))}
