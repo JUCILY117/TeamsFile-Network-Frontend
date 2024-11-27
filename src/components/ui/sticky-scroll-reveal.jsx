@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
@@ -52,12 +51,12 @@ export const StickyScroll = ({
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="h-[58rem] overflow-y-auto flex justify-center relative space-x-10 scroll-hidden p-10"
+      className="h-screen overflow-y-auto flex justify-center relative space-x-10 scroll-hidden p-10"
       ref={ref}>
       <div className="div relative flex items-start px-4">
         <div className="max-w-2xl">
           {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
+            <div key={item.title + index} className="my-48">
               <motion.h2
                 initial={{
                   opacity: 0,
@@ -65,7 +64,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-6xl font-bold text-slate-100">
+                className="text-7xl font-bold text-white max-w-m">
                 {item.title}
               </motion.h2>
               <motion.p
@@ -75,18 +74,18 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-2xl text-justify text-slate-300 max-w-m mt-10">
+                className="text-3xl text-justify text-slate-400 max-w-m mt-10">
                 {item.description}
               </motion.p>
             </div>
           ))}
-          <div className="h-40" />
+          {/* <div className="h-[15rem]" /> */}
         </div>
       </div>
       <div
         style={{ background: backgroundGradient }}
         className={cn(
-          "hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden",
+          "hidden lg:block h-[50vh] w-[40vw] rounded-md bg-white sticky top-[22vh] left-[50vw] overflow-hidden",
           contentClassName
         )}>
         {content[activeCard].content ?? null}

@@ -166,12 +166,12 @@ const HomeContent = () => {
                 Click here to create your first team!
               </p>
             ) : (
-              <div className="grid grid-cols-2 gap-4 w-full items-start">
+              <div className="flex flex-wrap gap-10 w-full justify-start mt-1 ml-1">
                 {teams.map((team) => (
                   <div
                     key={team._id}
-                    className="bg-black border border-[#2c2c2c] p-4 rounded-lg shadow-md text-center flex flex-col items-center justify-center transition duration-300 transform hover:scale-105 hover:bg-white hover:text-black cursor-pointer group"
-                    style={{ minWidth: "350px", maxWidth: "200px", minHeight: "250px", maxHeight: "200px" }}
+                    className="bg-black border border-[#2c2c2c] p-4 rounded-lg text-center flex flex-col items-center justify-center transition duration-300 transform hover:scale-105 hover:bg-white hover:text-black cursor-pointer group"
+                    style={{ minWidth: "400px", minHeight: "350px" }}
                     onClick={(e) => handleTeamClick(team, e)}
                   >
                     <div

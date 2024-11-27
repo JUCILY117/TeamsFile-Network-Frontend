@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import placeholderImage from "../assets/giorno.jpg";
@@ -15,9 +15,6 @@ import { FaGithub, FaFacebook } from "react-icons/fa";
 
 const apiBaseUrl = import.meta.env.VITE_BASE_API;
 const apiBaseUrlClient = import.meta.env.VITE_BASE_API_CLIENT;
-
-export const description =
-  "A login page with two columns. The first column has the login form with email and password. There's a Forgot your password link and a link to sign up if you do not have an account. The second column has a cover image.";
 
 export default function Dashboard() {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,7 +30,7 @@ export default function Dashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start spinner
+    setLoading(true);
 
     try {
       const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
@@ -59,24 +56,23 @@ export default function Dashboard() {
 
       const data = await response.json();
       localStorage.setItem("token", data.token);
+
       toast.success("Login successful!", {
         position: "top-right",
         autoClose: 3000,
         theme: "dark",
       });
+
+      setLoading(true);
       setTimeout(() => {
-        setLoading(true);
-        window.location.href = "/home";
+        window.location.href='/home';
       }, 2000);
-      
     } catch (error) {
       toast.error(error.message, {
         position: "top-right",
         autoClose: 3000,
         theme: "dark",
       });
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -143,29 +139,28 @@ export default function Dashboard() {
               )}
             </Button>
 
-            {/* Divider with "or" */}
-              <div className="flex items-center">
-                <hr className="flex-grow border-t border-[#2c2c2c]" />
-                <span className="px-4 text-md text-neutral-400">or</span>
-                <hr className="flex-grow border-t border-[#2c2c2c]" />
-              </div>
+            <div className="flex items-center">
+              <hr className="flex-grow border-t border-[#2c2c2c]" />
+              <span className="px-4 text-md text-neutral-400">or</span>
+              <hr className="flex-grow border-t border-[#2c2c2c]" />
+            </div>
 
             {/* Social login buttons */}
             <div className="flex justify-center gap-4">
               <Button className="font-bold flex items-center justify-center">
-                <FcGoogle size={30} className="hover:scale-[1.4] transition-all duration-300"/>
+                <FcGoogle size={30} className="hover:scale-[1.4] transition-all duration-300" />
               </Button>
               <Button className="font-bold flex items-center justify-center">
-                <FaGithub size={30} className="hover:scale-[1.4] transition-all duration-300"/>
+                <FaGithub size={30} className="hover:scale-[1.4] transition-all duration-300" />
               </Button>
               <Button className="font-bold flex items-center justify-center">
                 <FaXbox size={30} className=" text-green-600 hover:scale-[1.4] transition-all duration-300" />
               </Button>
               <Button className="font-bold flex items-center justify-center">
-                <FaXTwitter size={30} className="hover:scale-[1.4] transition-all duration-300"/>
+                <FaXTwitter size={30} className="hover:scale-[1.4] transition-all duration-300" />
               </Button>
               <Button className="font-bold flex items-center justify-center">
-                <FaFacebook size={30} className="text-[#1877F2] hover:scale-[1.4] transition-all duration-300"/>
+                <FaFacebook size={30} className="text-[#1877F2] hover:scale-[1.4] transition-all duration-300" />
               </Button>
             </div>
           </form>

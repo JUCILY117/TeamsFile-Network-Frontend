@@ -1,5 +1,9 @@
 import React from "react";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
+import collab from '../assets/collab.jpg';
+import realtime from '../assets/realtime.jpg';
+import secure from '../assets/secure.jpg';
+import manage from '../assets/manage.jpg';
 
 const content = [
   {
@@ -8,7 +12,13 @@ const content = [
       "Effortlessly Manage and Share Resources Create teams, organize resources, and store important documents all in one place. TeamShareNetwork makes collaboration easy with intuitive file management tools and secure sharing features, empowering teams to work more efficiently and stay organized.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Seamless Team Collaboration
+        <img
+          src={collab}
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
       </div>
     ),
   },
@@ -19,7 +29,7 @@ const content = [
     content: (
       <div className="h-full w-full flex items-center justify-center text-white">
         <img
-          src="https://images.unsplash.com/photo-1727344954274-76782f8b0bdb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={realtime}
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -34,7 +44,13 @@ const content = [
       "Keep Your Data Safe and Accessible Upload, store, and share documents with confidence. With TeamShareNetwork, your files are encrypted, and access permissions are fully customizable, ensuring secure sharing and management of sensitive team resources.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        Version control
+        <img
+          src={secure}
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
       </div>
     ),
   },
@@ -44,7 +60,13 @@ const content = [
       "Tailored to Your Team's Needs Whether you're working on a college project or a professional task, TeamShareNetwork lets you customize your team structure, roles, and permissions. Efficiently manage access to resources and ensure that everyone is on the same page with organized workflows.",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Running out of content
+        <img
+          src={manage}
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
       </div>
     ),
   },
